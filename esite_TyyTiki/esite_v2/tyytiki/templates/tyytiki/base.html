@@ -1,0 +1,67 @@
+{% load static %}
+{% load tyytiki_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>{{ title }}</title>
+
+	<link rel="stylesheet" href="{% static 'tyytiki/css/main.css' %}">
+
+</head>
+<body>
+
+	<div class="wrapper">
+		<div class="content">
+
+
+
+			{% block mainmenu %}
+
+			<ul class="nav" style="margin-top: 0px; display: inline-flex;">
+				<div>
+					<a href="{% url 'home' %}"><img src="{% static 'tyytiki/img/logo_korablik_blue.jpg' %}" alt="logo" style="width:50px; height: 50px;" /></a>
+				</div>
+
+				<div class="dropdown">
+					<button class="dropbtn">Меню</button>
+					<div class="dropdown-content">
+						<li><a href="{% url 'home' %}">Главная</a></li>
+						<li><a href="{% url 'about' %}">О авторе</a></li>
+						<li><a href="{% url 'delivery' %}">Доставка</a></li>
+					</div>
+
+				</div>
+				<div class="dropdown">
+					<button class="dropbtn">Мои работы</button>
+					<div class="dropdown-content">
+						<li><a href="{% url 'products' %}">Все</a></li>
+
+						{% show_categories cat_selected=cat_selected %}
+
+<!--						{% for c in categories %}-->
+<!--							<li><a href="{{ c.get_absolute_url }}">{{c.name}}</a></li>-->
+<!--						{% endfor %}-->
+					</div>
+
+				</div>
+			</ul>
+
+			{% endblock %}
+			{% block content %}
+			{% endblock %}
+
+		</div>
+
+	</div>
+
+	<script src="{% static 'tyytiki/js/app.js' %}" defer></script>
+    <script src="{% static 'tyytiki/libs/gsap/gsap.min.js' %}"></script>
+	<script src="{% static 'tyytiki/libs/gsap/ScrollTrigger.min.js' %}"></script>
+	<script src="{% static 'tyytiki/libs/gsap/ScrollSmoother.min.js' %}"></script>
+</body>
+</html>
